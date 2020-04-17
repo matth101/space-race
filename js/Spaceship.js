@@ -49,7 +49,7 @@ class Spaceship {
 
             if (this.lap === limit) {
                 this.win = true;
-                this.lap = limit - 1;
+                this.lap = limit;
             } 
         }
     }

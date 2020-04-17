@@ -1,25 +1,26 @@
+// Game constants
 const CANVAS_HEIGHT = 675;
 const CANVAS_WIDTH = 525;
 const ASTEROID_DIAMETER = 10;
 const SPACESHIP_SPEED = 2.25;
 
+// DOM Elements
 const tableP1 = document.getElementById("P1");
 const tableP2 = document.getElementById("P2");
 
+// Variable states
 let canvas;
-let ctx;
 let spaceship;
 let leftShip;
 let rightShip;
 let scoreP1 = 0;
 let scoreP2 = 0;
-let startGame = false;
-let endGame = false;
 let asteroidAmount;
 let asteroids = [];
 let ASTEROID_SPEED = 1;
 let winner;
 
+// Specific game-managing states
 let state;
 let difficulty;
 let lapLimit;
@@ -60,19 +61,19 @@ function start() {
                 switch (difficulty) {
                     case "EASY":
                         asteroidAmount = 40;
-                        lapLimit = 4;
+                        lapLimit = 3;
                         break;
                     case "MEDIUM":
                         asteroidAmount = 60;
-                        lapLimit = 5;
+                        lapLimit = 4;
                         break;
                     case "HARD":
                         asteroidAmount = 80;
-                        lapLimit = 6;
+                        lapLimit = 5;
                         break;
                     default:
                         asteroidAmount = 35;
-                        lapLimit = 4;
+                        lapLimit = 3;
                 }
                 terminate = true;
             }
@@ -87,9 +88,6 @@ function start() {
         state = "DRAWING";
         loop();
     }
-
-    console.log(new Array(asteroidAmount, lapLimit));
-    console.log(asteroids.length);
 }
 
 function end() {
@@ -114,7 +112,7 @@ function reset() {
         asteroid.respawn();
     }));
 
-    state = "STARTING";
+    state = "STARTING"; // wait for user to press start button now
     noLoop();
 }
 
@@ -131,7 +129,7 @@ function draw() {
             writeText(width * 0.5, height * 0.15, 25, "player 1: w, s keys", 255);
             writeText(width * 0.5, height * 0.23, 25, "player 2: up, down arrows", 255);
             writeText(width * 0.5, height * 0.4, 25, "race the fastest to win", 255);
-            writeText(width * 0.5, height * 0.55, 25, "press start and select", 255);
+            writeText(width * 0.5, height * 0.55, 25, "press start and choose", 255);
             writeText(width * 0.5, height * 0.6, 25, "difficulty (easy, medium,", 255);
             writeText(width * 0.5, height * 0.65, 25, "hard) to play", 255);
         case "DRAWING":
@@ -142,6 +140,7 @@ function draw() {
             break;
         case "ENDING":
             writeText(width * 0.5, height * 0.5, 40, winner + " wins", 255);
+            showScores();
             break;
     }
 }
@@ -167,8 +166,10 @@ function updateAndDisplaySprites() {
 }
 
 function showScores() {
-    writeText(width * 0.125, height * 0.9, 70, leftShip.lap, 255);
-    writeText(width * 0.875, height * 0.9, 70, rightShip.lap, 255);
+    if (state !== "STARTING") {
+        writeText(width * 0.1225, height * 0.8, 40, leftShip.lap + "/" + lapLimit, 255);
+        writeText(width * 0.8775, height * 0.8, 40, rightShip.lap + "/" + lapLimit, 255);
+    }
 }
 
 function checkWinners() {
@@ -182,7 +183,7 @@ function checkWinners() {
         winner = "player 2";  
         scoreP2++;
         rightShip.win = false;
-        end()
+        end();
     }
 }
 
