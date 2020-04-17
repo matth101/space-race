@@ -1,0 +1,66 @@
+body {
+    text-align: center;
+    font-family: "Major Mono Display", monospace;
+    background-image: url('media/milky-way-background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+h1 {
+    color: white;
+    font-size: 50px;
+    margin: 1.25%;
+}
+
+canvas {
+    position: relative;
+}
+
+table {
+    border: 1px solid white;
+    color: white;
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+}
+
+.container {
+    display: flex;                /* set our display property to use flex-box */
+    justify-content: center;      /* center container horizontally */
+    align-items: center;          /* center content vertically */
+}
+
+.column {
+    height: 100%;
+    width: 100%;
+    flex-direction: column; /* align children in columns instead of rows */
+}
+
+/* .wrap {
+    flex-wrap: wrap; 
+    height: 456px;
+    width: 456px;
+}  */
+
+#buttons {
+    text-align: center;
+}
+
+#playButton, #resetButton {
+    height: 40px;
+    width: 125px;
+    font-family: "Major Mono Display", monospace;
+    font-size: 22px;
+    border-radius: 10px;
+    margin-top: 1.5%;  
+}
+
+#playButton:hover {
+    background-color: #9acff5;
+}
+
+#resetButton:hover {
+    background-color: #ff9787;
+}

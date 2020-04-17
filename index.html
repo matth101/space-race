@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet"/>
+        <link rel="stylesheet" href="styles.css">
+
+        <script defer src="js/p5.min.js"></script>
+    </head>
+    <body>
+        <h1>space race</h1>
+
+        <div id="scoreTable">
+            <table>
+                <tr>
+                    <td>player 1</td>
+                    <td>player 2</td>
+                </tr>
+                <tr>
+                    <td id="P1"></td>
+                    <td id="P2"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="holder"></div>
+        <div id="buttons">
+            <button id="playButton">start</button>
+            <button id="resetButton">reset</button>
+        </div>
+
+        <script src="js/sketch.js"></script>
+        <script src="js/Asteroid.js"></script>
+        <script src="js/Spaceship.js"></script>
+    </body>
+</html>
