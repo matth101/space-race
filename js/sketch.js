@@ -17,7 +17,7 @@ let scoreP1 = 0;
 let scoreP2 = 0;
 let asteroidAmount;
 let asteroids = [];
-let ASTEROID_SPEED = 1;
+let asteroidSpeed = 1;
 let winner;
 
 // Specific game-managing states
@@ -56,7 +56,7 @@ function start() {
     if (state !== "DRAWING") {
         let terminate;
         do {
-            difficulty = String(prompt("Difficulty: ")).toUpperCase();
+            difficulty = String(prompt("Difficulty (easy, medium, hard): ")).toUpperCase();
             if (difficulty == null) {
                 terminate = false;
             } 
@@ -67,20 +67,24 @@ function start() {
             else {
                 switch (difficulty) {
                     case "EASY":
-                        asteroidAmount = 40;
+                        asteroidAmount = 35;
                         lapLimit = 3;
+                        asteroidSpeed = 1;
                         break;
                     case "MEDIUM":
-                        asteroidAmount = 60;
+                        asteroidAmount = 45;
                         lapLimit = 4;
+                        asteroidSpeed = 1.3;
                         break;
                     case "HARD":
-                        asteroidAmount = 80;
+                        asteroidAmount = 50;
                         lapLimit = 5;
+                        asteroidSpeed = 2;
                         break;
                     default:
                         asteroidAmount = 35;
                         lapLimit = 3;
+                        asteroidSpeed = 1;
                 }
                 terminate = true;
             }
@@ -157,7 +161,7 @@ function updateAndDisplaySprites() {
     rightShip.update(SPACESHIP_SPEED, lapLimit);
 
     asteroids.forEach((function(asteroid) {
-        asteroid.update(ASTEROID_SPEED);
+        asteroid.update(asteroidSpeed);
         asteroid.display();
 
         if (asteroid.hitSpaceship(leftShip)) {
